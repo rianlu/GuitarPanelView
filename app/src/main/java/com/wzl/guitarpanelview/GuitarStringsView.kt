@@ -61,7 +61,7 @@ class GuitarStringsView @JvmOverloads constructor(
         dip2px(context, 2f),
         dip2px(context, 2.5f),
         dip2px(context, 3f)
-        )
+    )
     private var textBounds = Rect()
 
     // 琴弦间距
@@ -99,11 +99,9 @@ class GuitarStringsView @JvmOverloads constructor(
             val textRealHeight = -textBounds.centerY() * 2
             mTextPaint.getTextBounds(chordLetters[i], 0, 1, textBounds)
             // 文字实际坐标原点为文字底部
-            // 和弦字母纵坐标 = 顶部间距 + 和弦字母自身实际高度 + 差值 + 琴弦间距 + 累计和弦字母实际高度
-            // 差值的意思就是和弦字母实际高度与我们设置的固定高度的差值
-            // 即字母到顶部的距离 = 顶部间距 + 和弦字母自身实际高度 + (固定高度 - 和弦字母自身实际高度) / 2
+            // 和弦字母纵坐标 = 顶部间距 + 累计固定高度 + 累计琴弦间距 + 和弦字母固定高度 - (和弦字母固定高度 - 实际和弦字母高度) / 2
             val chordLetterY =
-                stringsMargin / 2 + textRealHeight + (chordLetterHeight - textRealHeight) / 2 + stringsMargin * i + preTextHeight
+                chordLetterHeight / 2f + (chordLetterHeight + stringsMargin) * i + chordLetterHeight - (chordLetterHeight - textRealHeight) / 2f
             canvas?.drawText(
                 chordLetters[i],
                 0f,
@@ -111,9 +109,10 @@ class GuitarStringsView @JvmOverloads constructor(
                 mTextPaint
             )
             // 绘制琴弦
-            // 琴弦纵坐标 = 和弦字母纵坐标 - 和弦字母实际高度的一半
+            // 琴弦纵坐标 = 顶部间距 + 累计固定高度 + 累计琴弦间距 - 和弦字母固定高度的一半
             mLinePaint.strokeWidth = guitarStringsWidthArray[i].toFloat()
-            val stringsY = chordLetterY + textBounds.centerY()
+            val stringsY =
+                chordLetterHeight / 2f + (chordLetterHeight + stringsMargin) * i + chordLetterHeight / 2f
             canvas?.drawLine(
                 (letterStringsMargin + textBounds.centerX() * 2).toFloat(),
                 stringsY,
