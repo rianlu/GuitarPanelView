@@ -10,6 +10,7 @@
 
     <color name="dark_yellow">#de9e44</color>
     <color name="dark_green">#248067</color>
+    <color name="light_green">#1ba784</color>
 
     <color name="transparent">#00000000</color>
 </resources>

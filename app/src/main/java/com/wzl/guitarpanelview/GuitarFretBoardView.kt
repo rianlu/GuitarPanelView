@@ -27,10 +27,10 @@ class GuitarFretBoardView @JvmOverloads constructor(
     private var allNotes = mutableListOf<List<GuitarNote>>()
 
     private var textBounds = Rect()
-    private val scaleHeight = dip2px(context, 20f)
+    private val scaleHeight = dip2px(context, 12f)
     private val scaleRadius = dip2px(context, 10f)
     private val textLeftMargin = dip2px(context, 8f)
-    private val borderWidth = dip2px(context, 2f)
+    private val borderWidth = dip2px(context, 1f)
     private val chordTextSize = sp2px(context, 12f)
 
     // 如果设置，这两个参数都需要传值
@@ -47,13 +47,13 @@ class GuitarFretBoardView @JvmOverloads constructor(
     }
 
     private var mRectPaint: Paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.white)
+        color = ContextCompat.getColor(context, R.color.light_green)
         isAntiAlias = true
         style = Paint.Style.FILL
     }
 
     private var mBorderPaint: Paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.white)
+        color = ContextCompat.getColor(context, R.color.dark_green)
         isAntiAlias = true
         strokeWidth = +borderWidth
         style = Paint.Style.STROKE
@@ -94,24 +94,24 @@ class GuitarFretBoardView @JvmOverloads constructor(
             // 设置画笔颜色
             when (guitarNoteList.first().noteState) {
                 NoteState.NONE -> {
-                    mRectPaint.color = ContextCompat.getColor(context, R.color.white)
+                    mRectPaint.color = ContextCompat.getColor(context, R.color.light_green)
                     mBorderPaint.color =
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.dark_green)
                     mTextPaint.color = ContextCompat.getColor(context, R.color.dark_green)
                 }
                 NoteState.CORRECT -> {
                     mRectPaint.color =
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.light_green)
                     mBorderPaint.color =
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.dark_green)
                     mTextPaint.color = ContextCompat.getColor(context, R.color.dark_green)
 
                 }
                 NoteState.WRONG -> {
                     mRectPaint.color =
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.light_green)
                     mBorderPaint.color =
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.dark_green)
                     mTextPaint.color = ContextCompat.getColor(context, R.color.dark_green)
                 }
             }

@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 
@@ -25,19 +24,19 @@ class GuitarStringsView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var mLinePaint: Paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.white)
+        color = ContextCompat.getColor(context, R.color.light_green)
         isAntiAlias = true
     }
 
     private var mTextPaint: Paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.white)
+        color = ContextCompat.getColor(context, R.color.light_green)
         isAntiAlias = true
-        textSize = sp2px(context, 16f)
+        textSize = sp2px(context, 12f)
         typeface = Typeface.DEFAULT_BOLD
     }
 
     private var mCirclePaint: Paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.white)
+        color = ContextCompat.getColor(context, R.color.light_green)
         isAntiAlias = true
     }
 
@@ -72,7 +71,7 @@ class GuitarStringsView @JvmOverloads constructor(
 
     init {
         initTypeArray(context, attrs)
-        setBackgroundColor(ContextCompat.getColor(context, R.color.dark_yellow))
+//        setBackgroundColor(ContextCompat.getColor(context, R.color.dark_yellow))
     }
 
     private fun initTypeArray(context: Context, attrs: AttributeSet?) {
