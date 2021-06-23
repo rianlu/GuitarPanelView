@@ -6,3 +6,7 @@
 #### 预览图
 
 ![预览](https://github.com/rianlu/GuitarPanelView/blob/main/img/preview.jpeg)
+
+
+
+![GIF预览](https://github.com/rianlu/GuitarPanelView/blob/main/img/preview.gif)
