@@ -65,8 +65,6 @@ class GuitarStringsView @JvmOverloads constructor(
     private var textBounds = Rect()
 
     // 琴弦间距
-    // 因为每个字母实际绘画出来高度并不一致
-    // 所以琴弦间距用于设置和弦字母间距，确保琴弦能和字母对齐
     private var stringsMargin = chordLetterHeight
 
     init {
@@ -93,8 +91,6 @@ class GuitarStringsView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        // 用于累计之前和弦字母的高度（字母实际高度不一定一样）
-        var preTextHeight = 0f
         for (i in 0 until 6) {
             val textRealHeight = -textBounds.centerY() * 2
             mTextPaint.getTextBounds(chordLetters[i], 0, 1, textBounds)
@@ -128,8 +124,6 @@ class GuitarStringsView @JvmOverloads constructor(
                 radius.toFloat(),
                 mCirclePaint
             )
-            // 累计和弦字母高度
-            preTextHeight += chordLetterHeight
         }
     }
 
