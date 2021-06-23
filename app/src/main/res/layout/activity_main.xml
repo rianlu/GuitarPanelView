@@ -10,12 +10,11 @@
         android:id="@+id/guitarStringsView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:stringsMargin="10dp" />
+        app:stringsMargin="20dp" />
 
     <com.wzl.guitarpanelview.GuitarFretBoardView
         android:id="@+id/guitarFretBoardView"
@@ -23,7 +22,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/guitarStringsView"
         app:layout_constraintEnd_toEndOf="@+id/guitarStringsView"
         app:layout_constraintHorizontal_bias="1.0"

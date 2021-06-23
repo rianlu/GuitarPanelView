@@ -65,7 +65,7 @@ class GuitarStringsView @JvmOverloads constructor(
     private var textBounds = Rect()
 
     // 琴弦间距
-    private var stringsMargin = chordLetterHeight
+    private var stringsMargin = chordLetterHeight * 2
 
     // 上下间距不能小于 GuitarFretBoardView 中的 (scaleHeight + borderWidth * 2) / 2
     // 不然会覆盖部分 UI
@@ -102,9 +102,9 @@ class GuitarStringsView @JvmOverloads constructor(
             val textRealHeight = -textBounds.centerY() * 2
             mTextPaint.getTextBounds(chordLetters[i], 0, 1, textBounds)
             // 文字实际坐标原点为文字底部
-            // 和弦字母纵坐标 = 顶部间距 + 累计固定高度 + 累计琴弦间距 + 和弦字母固定高度 - (和弦字母固定高度 - 实际和弦字母高度) / 2
+            // 和弦字母纵坐标 = 顶部间距 + 累计琴弦间距 + 和弦字母固定高度 - (和弦字母固定高度 - 实际和弦字母高度) / 2
             val chordLetterY =
-                topMargin + (chordLetterHeight + stringsMargin) * i + chordLetterHeight - (chordLetterHeight - textRealHeight) / 2f
+                topMargin + stringsMargin * i + chordLetterHeight - (chordLetterHeight - textRealHeight) / 2f
             canvas?.drawText(
                 chordLetters[i],
                 0f,
@@ -113,9 +113,9 @@ class GuitarStringsView @JvmOverloads constructor(
             )
             // 绘制琴弦
             mLinePaint.strokeWidth = guitarStringsWidthArray[i].toFloat()
-            // 琴弦纵坐标 = 顶部间距 + 累计固定高度 + 累计琴弦间距 - 和弦字母固定高度的一半
+            // 琴弦纵坐标 = 顶部间距 + 累计琴弦间距 - 和弦字母固定高度的一半
             val stringsY =
-                topMargin + (chordLetterHeight + stringsMargin) * i + chordLetterHeight / 2f
+                topMargin + stringsMargin * i + chordLetterHeight / 2f
             canvas?.drawLine(
                 (letterStringsMargin + textBounds.centerX() * 2).toFloat(),
                 stringsY,
@@ -145,11 +145,11 @@ class GuitarStringsView @JvmOverloads constructor(
         val wSpecMode = MeasureSpec.getMode(widthMeasureSpec)
         val wSpecSize = MeasureSpec.getSize(widthMeasureSpec)
         val hSpecMode = MeasureSpec.getMode(heightMeasureSpec)
-        // 总宽度为：顶部间距 + 和弦固定高度的一半 + (和弦字母固定高度 + 琴弦间距) * 5 + 底部间距 + 琴弦高度和
+        // 总宽度为：顶部间距 + 和弦固定高度的一半 + (和弦字母固定高度 + 琴弦间距) * 5 + 和弦固定高度的一半 + 底部间距
         if (wSpecMode == MeasureSpec.EXACTLY) {
             setMeasuredDimension(
                 wSpecSize,
-                (topMargin + chordLetterHeight / 2f + (chordLetterHeight + stringsMargin) * 5 + bottomMargin + guitarStringsWidthArray.sum()).toInt()
+                (topMargin + chordLetterHeight / 2f + stringsMargin * 5 + chordLetterHeight / 2f + bottomMargin).toInt()
             )
         }
     }
