@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GuitarPanelView</string>
+
+    <string name="start_fret_text">%d fr</string>
+</resources>
