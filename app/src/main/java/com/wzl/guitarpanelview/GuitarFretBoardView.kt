@@ -118,9 +118,9 @@ class GuitarFretBoardView @JvmOverloads constructor(
             guitarNoteList.forEach { guitarNote ->
                 val scaleWidth = guitarNote.duration / ratio
                 mTextPaint.getTextBounds(guitarNote.fretNumber.toString(), 0, 1, textBounds)
-                // 需要加上边框宽度的一半
+                // 上下各留出边框的宽度
                 val top = scaleMargin * (guitarNote.stringNumberTab - 1) + borderWidth / 2
-                val bottom = scaleMargin * (guitarNote.stringNumberTab - 1) + scaleHeight
+                val bottom = scaleMargin * (guitarNote.stringNumberTab - 1) + scaleHeight - borderWidth / 2
                 canvas.drawRoundRect(
                     textX,
                     top,
